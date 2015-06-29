@@ -24,8 +24,6 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
     var nrOfColumns = this.matrix[0].length;
     var nrOfRows = this.matrix.length;
     var radius = Math.ceil(nrOfRows/2);
-    console.log('radius',radius);
-    console.log('layer',layer)
     var n = 0;
 
   if(!layer && layer !==0){
@@ -75,10 +73,7 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
       leftRotateCol.push(this.matrix[n1][colToRotate1])
       n1++;
     }
-    console.log('topRotateRow',topRotateRow)
-    console.log('bottomRotateRow',bottomRotateRow)
-    console.log('rightRotatCol',rightRotateCol)
-    console.log('leftRotateCol',leftRotateCol)
+    //replacing only the layer to change
     if(direction === "ClockWise"){
       for (var i = colToRotate1; i <= colToRotate2; i++) {
         this.matrix[rowToRotate1][i] = leftRotateCol.pop();
@@ -87,6 +82,8 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
         this.matrix[i][colToRotate1] = bottomRotateRow.shift();
       };
     }
+        //replacing only the layer to change
+
     if(direction === "CounterClockWise"){
       for (var i = colToRotate1; i <= colToRotate2; i++) {
         this.matrix[rowToRotate1][i] = rightRotateCol.shift();
@@ -97,16 +94,4 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
     }
 
   }
-  console.log('thismatrix after change',this.matrix);
-  var innerLayer = layer -1 ;
-  // if(innerLayer>0){
-  //   console.log('iterating')
-  //   this.rotate(direction,innerLayer);
-  // }
-  // do work here
-
-  // this.matrix = newMatrix;
-  // must be a valid Direction, see Direction.js
-
-
 };
