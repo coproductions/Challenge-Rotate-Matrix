@@ -44,8 +44,6 @@ MatrixRotator.prototype.rotate = function(direction) {
     }
   }
   // do work here
-  console.log('henineinienienien')
-  console.log(newMatrix);
   this.matrix = newMatrix;
   // must be a valid Direction, see Direction.js
 
