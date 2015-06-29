@@ -19,6 +19,7 @@ function MatrixRotator(matrix){
 //                                         |-- Must be Direction.CW
 //                                         v        or Direction.CCW
 MatrixRotator.prototype.rotate = function(direction,layer) {
+  console.log('thismatrix before change',this.matrix);
   var newMatrix = [];
     var nrOfColumns = this.matrix[0].length;
     var nrOfRows = this.matrix.length;
@@ -40,12 +41,14 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
       while (n < nrOfColumns){
         var newRow = [];
         for (var i = nrOfRows -1; i >= 0; i--) {
-          newRow.push(this.matrix[i][n]);
+          newRow.unshift(this.matrix[i][n]);
         };
-        newMatrix.push(newRow);
+        newMatrix.unshift(newRow);
         n++;
       }
     }
+
+    this.matrix = newMatrix;
   }
   else if(layer < 1 || layer > radius){
     throw new RangeError('not a valid layer')
@@ -56,7 +59,7 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
     var colToRotate2 = (nrOfColumns - 1) - (radius - layer);
     var topRotateRow = [];
     var bottomRotateRow = [];
-    for (var i = colToRotate1; i < colToRotate2; i++) {
+    for (var i = colToRotate1; i <= colToRotate2; i++) {
       topRotateRow.push(this.matrix[rowToRotate1][i]);
       bottomRotateRow.push(this.matrix[rowToRotate2][i]);
     };
@@ -69,6 +72,10 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
       leftRotateCol.push(this.matrix[n1][colToRotate1])
       n1++;
     }
+     console.log('topRotateRow',topRotateRow)
+  console.log('bottomRotateRow',bottomRotateRow)
+  console.log('rightRotatCol',rightRotatCol)
+  console.log('leftRotateCol',leftRotateCol)
     if(direction === "ClockWise"){
       for (var i = colToRotate1; i < colToRotate2; i++) {
         this.matrix[rowToRotate1][i] = leftRotateCol.shift();
@@ -76,15 +83,21 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
         this.matrix[i][colToRotate2] = topRotateRow.shift();
         this.matrix[i][colToRotate1] = bottomRotateRow.shift();
       };
-
-
+    }
+    if(direction === "CounterClockWise"){
+      for (var i = colToRotate1; i < colToRotate2; i++) {
+        this.matrix[rowToRotate1][i] = rightRotateCol.shift();
+        this.matrix[rowToRotate2][i] = leftRotateCol.shift();
+        this.matrix[i][colToRotate1] = topRotateRow.pop();
+        this.matrix[i][colToRotate2] = bottomRotateRow.pop();
+      };
     }
 
   }
   // do work here
 
-  console.log(newMatrix);
-  this.matrix = newMatrix;
+  console.log('thismatrix after change',this.matrix);
+  // this.matrix = newMatrix;
   // must be a valid Direction, see Direction.js
 
 
