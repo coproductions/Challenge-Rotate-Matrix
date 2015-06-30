@@ -4,7 +4,7 @@ var MatrixRotator = require("../MatrixRotator").MatrixRotator;
 var Matrix = require("../Matrix").Matrix;
 var Direction = require("../Direction").Direction;
 
-describe.skip("The Matrix Rotator", function () {
+describe("The Matrix Rotator", function () {
 
   var matrixRotator;
   beforeEach(function(){
