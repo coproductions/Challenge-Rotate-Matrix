@@ -82,8 +82,7 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
         this.matrix[i][colToRotate1] = bottomRotateRow.shift();
       };
     }
-        //replacing only the layer to change
-
+    //replacing only the layer to change
     if(direction === "CounterClockWise"){
       for (var i = colToRotate1; i <= colToRotate2; i++) {
         this.matrix[rowToRotate1][i] = rightRotateCol.shift();
@@ -92,6 +91,5 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
         this.matrix[i][colToRotate2] = bottomRotateRow.pop();
       };
     }
-
   }
 };
