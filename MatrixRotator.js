@@ -111,6 +111,7 @@ MatrixRotator.prototype.rotateStep = function(direction, layer) {
     var radius = Math.ceil(nrOfRows/2);
     var n = 0;
 
+    //validating layers
     if(layer < 1 || layer > radius){
       console.log('throwing error')
       throw new RangeError('not a valid layer');
@@ -121,53 +122,45 @@ MatrixRotator.prototype.rotateStep = function(direction, layer) {
       var colToRotate2 = (nrOfColumns - 1) - (radius - layer);
       var topRotateRow = [];
       var bottomRotateRow = [];
+
+      //extracting rows
       //shortened the rows to rotate
       for (var i = colToRotate1+1; i <= colToRotate2-1; i++) {
         topRotateRow.push(this.matrix[rowToRotate1][i]);
         bottomRotateRow.push(this.matrix[rowToRotate2][i]);
       };
-        console.log('topRotateRow',topRotateRow)
-        console.log('bottomRotateRow',bottomRotateRow)
-
 
       var rightRotateCol = [];
       var leftRotateCol = [];
       var n1 = rowToRotate1;
+
+      //extracting columns
       while(n1 <= rowToRotate2){
         rightRotateCol.push(this.matrix[n1][colToRotate2])
         leftRotateCol.push(this.matrix[n1][colToRotate1])
         n1++;
       }
-        console.log('right col',rightRotateCol)
-        console.log('left col',leftRotateCol)
+
       //replacing only the layer to change
       if(direction === "ClockWise"){
+
+        //changing corner values
         bottomRotateRow.push(rightRotateCol.pop());
         topRotateRow.unshift(leftRotateCol.shift());
         rightRotateCol.unshift(topRotateRow.pop());
         leftRotateCol.push(bottomRotateRow.shift());
-              console.log('topRotateRow after',topRotateRow)
-        console.log('bottomRotateRow after',bottomRotateRow)
-         console.log('right col after',rightRotateCol)
-        console.log('left col after',leftRotateCol)
-
-
-
       }
       //replacing only the layer to change
       if(direction === "CounterClockWise"){
 
+        //changing corner values
         topRotateRow.push(rightRotateCol.shift());
         bottomRotateRow.unshift(leftRotateCol.pop());
-           rightRotateCol.push(bottomRotateRow.pop());
+        rightRotateCol.push(bottomRotateRow.pop());
         leftRotateCol.unshift(topRotateRow.shift());
-              console.log('topRotateRow after',topRotateRow)
-        console.log('bottomRotateRow after',bottomRotateRow)
-         console.log('right col after',rightRotateCol)
-        console.log('left col after',leftRotateCol)
-
       }
 
+      //replacing new rows and columns
       for (var i = colToRotate1+1; i <= colToRotate2-1; i++) {
         this.matrix[rowToRotate1][i] = topRotateRow.shift();
         this.matrix[rowToRotate2][i] = bottomRotateRow.shift();
@@ -177,11 +170,9 @@ MatrixRotator.prototype.rotateStep = function(direction, layer) {
         this.matrix[i][colToRotate1] = leftRotateCol.shift();
       };
     }
-
-    console.log('matrix after change',this.matrix)
   } else{
+    //validating direction
     throw new RangeError('not a valid direction');
   }
-
 };
 
