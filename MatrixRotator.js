@@ -13,7 +13,9 @@ var Direction = require("./Direction").Direction;
 
 function MatrixRotator(matrix){
   this.matrix = matrix;
+
   console.log('thismatrix before change',this.matrix);
+
 
 };
 
@@ -65,6 +67,7 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
       bottomRotateRow.push(this.matrix[rowToRotate2][i]);
     };
 
+
     var rightRotateCol = [];
     var leftRotateCol = [];
     var n1 = rowToRotate1;
@@ -94,3 +97,13 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
   }
 };
 //test comment
+
+
+//                    Must be Direction.CW               |-- Must be a valid Number
+//                        or Direction.CCW ---v          v   between 1 and [radius]
+MatrixRotator.prototype.rotateStep = function(direction, layer) {
+  // do work here
+
+
+};
+
