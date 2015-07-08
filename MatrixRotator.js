@@ -102,7 +102,7 @@ MatrixRotator.prototype.rotate = function(direction,layer) {
 //                    Must be Direction.CW               |-- Must be a valid Number
 //                        or Direction.CCW ---v          v   between 1 and [radius]
 MatrixRotator.prototype.rotateStep = function(direction, layer) {
-  console.log('dircetion yyyyyyyy',direction)
+
   if(direction === 'CounterClockWise' || direction === 'ClockWise'){
 
     var newMatrix = [];
@@ -113,7 +113,6 @@ MatrixRotator.prototype.rotateStep = function(direction, layer) {
 
     //validating layers
     if(layer < 1 || layer > radius){
-      console.log('throwing error')
       throw new RangeError('not a valid layer');
     } else {
       var rowToRotate1 = radius - layer;
