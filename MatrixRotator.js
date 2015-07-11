@@ -140,7 +140,6 @@ MatrixRotator.prototype.rotateStep = function(direction, layer) {
         n1++;
       }
 
-      //replacing only the layer to change
       if(direction === "ClockWise"){
 
         //changing corner values
@@ -149,7 +148,7 @@ MatrixRotator.prototype.rotateStep = function(direction, layer) {
         rightRotateCol.unshift(topRotateRow.pop());
         leftRotateCol.push(bottomRotateRow.shift());
       }
-      //replacing only the layer to change
+
       if(direction === "CounterClockWise"){
 
         //changing corner values

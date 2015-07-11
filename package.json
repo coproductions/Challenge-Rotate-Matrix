@@ -1,8 +1,8 @@
 {
-  "name": "challenge-rotate-matrix",
+  "name": "matrix-rotator",
   "version": "1.0.0",
   "description": "Matrix Rotator ===========",
-  "main": "Direction.js",
+  "main": "MatrixRotator.js",
   "directories": {
     "test": "test"
   },
